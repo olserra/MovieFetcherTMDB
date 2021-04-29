@@ -1,7 +1,6 @@
-import { ScrollView, Text, View } from 'react-native';
+import { Button, ScrollView, Text, View } from 'react-native';
 
 import { Alert } from '../../components/common/Alert';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Feather } from '@expo/vector-icons';
 import React from 'react';
 import Screen from '../../components/common/Screen';
@@ -9,13 +8,20 @@ import { Share } from '../../components/common/Share';
 import { TouchableOpacity } from '../../components/common/TouchableOpacity';
 import { darkBlue } from '../../utils/colors';
 import styles from './styles';
+import { useAuthorization } from '../../providers/AuthProvider';
 
-const Configuration = () => {
+const Configuration = (props) => {
 
-  const signOut = async () => {
-    await AsyncStorage.removeItem('token')
-    navigation.navigate('Login')
-  }
+  const { status, authToken } = useAuthorization();
+
+  const SignOut = ({ navigation }) => {
+    const { signOut } = useAuthorization();
+    function navigateAuth() {
+      signOut();
+      navigation.navigate('Login');
+    }
+    return <Button title="Sign Out" onPress={navigateAuth} />;
+  };
 
   const showError = () => {
     Alert({
@@ -78,9 +84,9 @@ const Configuration = () => {
                 Version 1.0
               </Text>
               <TouchableOpacity onPress={() => signOut()}>
-                <Text style={styles.itemTextSignOut} numberOfLines={2}>
-                  Sign Out
-                </Text>
+                <View style={styles.actions}>
+                  <SignOut {...props} />
+                </View>
               </TouchableOpacity>
             </View>
           </View>

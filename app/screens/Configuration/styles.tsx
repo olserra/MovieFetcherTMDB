@@ -50,7 +50,15 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 5
-  }
+  },
+  actions: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingVertical: 20,
+  },
+  text: {
+    textAlign: 'center',
+  },
 });
 
 export default styles;

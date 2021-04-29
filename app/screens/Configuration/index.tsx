@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
-import { getItem, setItem } from '../../utils/asyncStorage';
 
 import { Alert } from '../../components/common/Alert';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Constants from 'expo-constants';
 import { Feather } from '@expo/vector-icons';
+import React from 'react';
 import Screen from '../../components/common/Screen';
 import { Share } from '../../components/common/Share';
 import { TouchableOpacity } from '../../components/common/TouchableOpacity';
@@ -77,7 +75,7 @@ const Configuration = () => {
             </TouchableOpacity>
             <View style={[styles.item, styles.itemNoBorder]}>
               <Text style={styles.itemTextVersion} numberOfLines={2}>
-                Version {Constants.manifest.version}
+                Version 1.0
               </Text>
               <TouchableOpacity onPress={() => signOut()}>
                 <Text style={styles.itemTextSignOut} numberOfLines={2}>

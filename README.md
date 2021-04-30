@@ -58,12 +58,12 @@ This is an example of how to list things you need to use the software and how to
 <!-- NEXT STEPS -->
 ## Nice to have in a near future
 
-- Known issues limitation (high level)
+### Known issues limitation (high level)
 * Architecture (DDD)
 * Improve tests (DetoX with Jest)
 * App size
 
-- Tests to implement
+### Tests to implement
 * (scenario) What happens if the server is down? 
 * Memory issues? Do we have cache? 
 * Error handling?
@@ -72,7 +72,7 @@ This is an example of how to list things you need to use the software and how to
 * Smaller resolutions
 * Unit tests
 
-- Features to implement
+### Features to implement
 * Monitoring system (Firebase for trackability and have a crashrate)
 * Click monitoring with stats
 * Metrics for success (active users, clicks on films)
@@ -83,6 +83,6 @@ This is an example of how to list things you need to use the software and how to
 * Alerts for bad / slow connection
 * Minimize the Payload with cache
 
-- Advanced
+### Advanced
 * Accessibility
 * 2 factor auth

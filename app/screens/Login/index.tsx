@@ -25,7 +25,7 @@ const Login = (props) => {
     const CreateAccount = ({ navigation }) => {
         const { signIn } = useAuthorization();
         function navigateHome() {
-            signIn('my_token');
+            signIn();
             navigation.navigate('Auth');
         }
         return <Button title="Create Account" onPress={navigateHome} />;
@@ -34,9 +34,24 @@ const Login = (props) => {
     const SignIn = ({ navigation }) => {
         const { signIn } = useAuthorization();
         function navigateHome() {
-            if (email == "o@o.com" && password == "123") {
-                signIn();
+            if (email.email === "o@o.com" && password.password === "123") {
+                signIn("my_token");
                 navigation.navigate('Auth');
+            } else {
+                console.log("Error")
+
+                return (
+                    <View style={styles.containerDialog}>
+                        <Button title="Show dialog" onPress={showDialog} />
+                        <Dialog.Container visible={visible}>
+                            <Dialog.Title>LogIn failed</Dialog.Title>
+                            <Dialog.Description>
+                                Do you want to delete this account? You cannot undo this action.
+                        </Dialog.Description>
+                            <Dialog.Button label="Ok" onPress={handleDialog} />
+                        </Dialog.Container>
+                    </View>
+                );
             }
         }
         return <Button title="Sign IN" onPress={navigateHome} />;

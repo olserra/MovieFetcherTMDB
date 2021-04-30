@@ -1,8 +1,9 @@
 import * as React from 'react';
 
-import { Button, TextInput, TouchableOpacity, View } from 'react-native';
+import { Button, Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 import Dialog from "react-native-dialog";
+import { Link } from '@react-navigation/native';
 import styles from "./Styles"
 import { useAuthorization } from '../../stores/AuthStore';
 import { useState } from 'react';
@@ -24,10 +25,27 @@ const Login = (props) => {
     const CreateAccount = ({ navigation }) => {
         const { signIn } = useAuthorization();
         function navigateHome() {
-            signIn("my_token");
-            navigation.navigate('Auth');
+            if (email.email === "" && password.password === "") {
+                signIn("my_token");
+                navigation.navigate('Auth');
+            } else {
+                console.log("Error")
+
+                return (
+                    <View style={styles.containerDialog}>
+                        <Button title="Show dialog" onPress={showDialog} />
+                        <Dialog.Container visible={visible}>
+                            <Dialog.Title>LogIn failed</Dialog.Title>
+                            <Dialog.Description>
+                                Cannot perform this action.
+                        </Dialog.Description>
+                            <Dialog.Button label="Ok" onPress={handleDialog} />
+                        </Dialog.Container>
+                    </View>
+                );
+            }
         }
-        return <Button title="Create Account" onPress={navigateHome} />;
+        return <Text onPress={navigateHome}>Create account</Text>;
     };
 
     const SignIn = ({ navigation }) => {
@@ -45,7 +63,7 @@ const Login = (props) => {
                         <Dialog.Container visible={visible}>
                             <Dialog.Title>LogIn failed</Dialog.Title>
                             <Dialog.Description>
-                                Do you want to delete this account? You cannot undo this action.
+                                Cannot perform this action.
                         </Dialog.Description>
                             <Dialog.Button label="Ok" onPress={handleDialog} />
                         </Dialog.Container>
@@ -53,12 +71,17 @@ const Login = (props) => {
                 );
             }
         }
-        return <Button title="Sign IN" onPress={navigateHome} />;
+        return <Button title="Sign in" onPress={navigateHome} />;
     };
 
     return (
 
         <View style={styles.container}>
+
+            <Image
+                style={styles.tinyLogo}
+                source={require('../../assets/images/tmdb.png')}
+            />
             <TextInput
                 style={styles.input}
                 onChangeText={(email) => setEmail({ email })}
@@ -81,7 +104,7 @@ const Login = (props) => {
                 <SignIn {...props} />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.submitButton}>
+            <TouchableOpacity style={styles.createAccountLink}>
                 <CreateAccount {...props} />
             </TouchableOpacity>
         </View>

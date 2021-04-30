@@ -4,7 +4,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 2,
     justifyContent: "center",
-    // alignItems: "center",
     backgroundColor: "#F5FCFF"
   },
   containerDialog: {
@@ -31,10 +30,21 @@ const styles = StyleSheet.create({
     marginRight: 15,
     marginTop: 15,
     alignItems: "center",
-    height: 40
+    height: 40,
+  },
+  createAccountLink: {
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 15,
   },
   submitButtonText: {
     color: "white"
+  },
+  tinyLogo: {
+    marginLeft: 145,
+    marginBottom: 45,
+    width: 86,
+    height: 78,
   }
 });
 

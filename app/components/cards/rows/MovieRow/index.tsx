@@ -1,26 +1,24 @@
 import React, { memo } from 'react';
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 
-import { TouchableOpacity } from '../../../common/TouchableOpacity';
 import { Image } from '../../../common/Image';
-
-import { getResponsiveWidth } from '../../../../utils/dimensions';
-import { getImageApi } from '../../../../utils/images';
+import { ROUTES } from '../../../../navigation/routes';
+import { TouchableOpacity } from '../../../common/TouchableOpacity';
 import { convertToUpperCaseFirstLetter } from '../../../../utils/letters';
 import { convertToYear } from '../../../../utils/dates';
 import { convertTypeWithGenre } from '../../../../utils/genre';
-
-import { ROUTES } from '../../../../navigation/routes';
-
-import isoLanguage from '../../../../data/iso.json';
-
+import { getImageApi } from '../../../../utils/images';
+import { getResponsiveWidth } from '../../../../utils/dimensions';
 import styles from './styles';
+import { useIsoStore } from '../../../../stores/IsoStore';
 
 const WIDTH = getResponsiveWidth(30);
 const HEIGHT = getResponsiveWidth(40);
 
+const { iso } = useIsoStore();
+
 const getLanguage = (value) => {
-  const str = isoLanguage[value] || '';
+  const str = iso[value] || '';
 
   return convertToUpperCaseFirstLetter(str);
 };
@@ -35,8 +33,8 @@ const renderScore = (voteAverage) => {
     voteAverage < 5
       ? 'low'
       : voteAverage >= 5 && voteAverage < 7
-      ? 'mid'
-      : 'high';
+        ? 'mid'
+        : 'high';
 
   return (
     <View style={[styles.score, styles[color]]}>

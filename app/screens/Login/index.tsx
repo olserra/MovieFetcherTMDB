@@ -1,9 +1,7 @@
 import * as React from 'react';
 
-import { Button, Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Button, Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-import Dialog from "react-native-dialog";
-import { Link } from '@react-navigation/native';
 import styles from "./Styles"
 import { useAuthorization } from '../../stores/AuthStore';
 import { useState } from 'react';
@@ -25,23 +23,16 @@ const Login = (props) => {
     const CreateAccount = ({ navigation }) => {
         const { signIn } = useAuthorization();
         function navigateHome() {
-            if (email.email === "" && password.password === "") {
+            if (email.email != "" && password.password != "") {
                 signIn("my_token");
                 navigation.navigate('Auth');
             } else {
-                console.log("Error")
-
-                return (
-                    <View style={styles.containerDialog}>
-                        <Button title="Show dialog" onPress={showDialog} />
-                        <Dialog.Container visible={visible}>
-                            <Dialog.Title>LogIn failed</Dialog.Title>
-                            <Dialog.Description>
-                                Cannot perform this action.
-                        </Dialog.Description>
-                            <Dialog.Button label="Ok" onPress={handleDialog} />
-                        </Dialog.Container>
-                    </View>
+                Alert.alert(
+                    "Error",
+                    "Inputs cannot be blank",
+                    [
+                        { text: "OK", onPress: () => console.log("OK Pressed") }
+                    ]
                 );
             }
         }
@@ -55,19 +46,12 @@ const Login = (props) => {
                 signIn("my_token");
                 navigation.navigate('Auth');
             } else {
-                console.log("Error")
-
-                return (
-                    <View style={styles.containerDialog}>
-                        <Button title="Show dialog" onPress={showDialog} />
-                        <Dialog.Container visible={visible}>
-                            <Dialog.Title>LogIn failed</Dialog.Title>
-                            <Dialog.Description>
-                                Cannot perform this action.
-                        </Dialog.Description>
-                            <Dialog.Button label="Ok" onPress={handleDialog} />
-                        </Dialog.Container>
-                    </View>
+                Alert.alert(
+                    "Error",
+                    "Password or email invalid",
+                    [
+                        { text: "OK", onPress: () => console.log("OK Pressed") }
+                    ]
                 );
             }
         }

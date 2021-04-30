@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import { Alert, Button, Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, BackHandler, Button, Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useEffect, useState } from 'react';
 
 import styles from "./Styles"
 import { useAuthorization } from '../../stores/AuthStore';
-import { useState } from 'react';
 
 const Login = (props) => {
 
@@ -12,20 +12,20 @@ const Login = (props) => {
     const [password, setPassword] = useState('');
     const [visible, setVisible] = useState(false);
 
-    const showDialog = () => {
-        setVisible(true);
-    };
-
-    const handleDialog = () => {
-        setVisible(false);
-    };
+    useEffect(() => {
+        BackHandler.addEventListener('hardwareBackPress', () => true)
+        return () =>
+            BackHandler.removeEventListener('hardwareBackPress', () => true)
+    }, [])
 
     const CreateAccount = ({ navigation }) => {
         const { signIn } = useAuthorization();
         function navigateHome() {
             if (email.email != "" && password.password != "") {
                 signIn("my_token");
-                navigation.navigate('Auth');
+                navigation.replace('Auth');
+                emailInput.clear()
+                passInput.clear()
             } else {
                 Alert.alert(
                     "Error",
@@ -44,7 +44,9 @@ const Login = (props) => {
         function navigateHome() {
             if (email.email === "o@o.com" && password.password === "123") {
                 signIn("my_token");
-                navigation.navigate('Auth');
+                navigation.replace('Auth');
+                emailInput.clear()
+                passInput.clear()
             } else {
                 Alert.alert(
                     "Error",
@@ -67,6 +69,7 @@ const Login = (props) => {
                 source={require('../../assets/images/tmdb.png')}
             />
             <TextInput
+                ref={input => { emailInput = input }}
                 style={styles.input}
                 onChangeText={(email) => setEmail({ email })}
                 placeholder="Email"
@@ -76,6 +79,7 @@ const Login = (props) => {
             />
 
             <TextInput
+                ref={input => { passInput = input }}
                 style={styles.input}
                 onChangeText={(password) => setPassword({ password })}
                 placeholder="Password"

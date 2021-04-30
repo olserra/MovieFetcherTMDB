@@ -8,8 +8,6 @@ import { blue, darkBlue, pink, white } from '../utils/colors';
 
 import { Feather } from '@expo/vector-icons';
 import { Host } from 'react-native-portalize';
-import { Login } from '../screens';
-import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';

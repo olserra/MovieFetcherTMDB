@@ -21,32 +21,25 @@ const Login = (props) => {
         setVisible(false);
     };
 
+
     const CreateAccount = ({ navigation }) => {
         const { signIn } = useAuthorization();
-        signIn();
-        navigation.navigate('Auth');
+        function navigateHome() {
+            signIn('my_token');
+            navigation.navigate('Auth');
+        }
+        return <Button title="Create Account" onPress={navigateHome} />;
     };
 
     const SignIn = ({ navigation }) => {
         const { signIn } = useAuthorization();
-
-        if (email == "olserra@gmail.com" && password == "qweasd") {
-            signIn();
-            navigation.navigate('Auth');
-        } else {
-            return (
-                <View style={styles.containerDialog}>
-                    <Button title="Show dialog" onPress={showDialog} />
-                    <Dialog.Container visible={visible}>
-                        <Dialog.Title>Account delete</Dialog.Title>
-                        <Dialog.Description>
-                            Email or password invalid. Please try again.
-                        </Dialog.Description>
-                        <Dialog.Button label="Ok" onPress={handleDialog} />
-                    </Dialog.Container>
-                </View>
-            );
+        function navigateHome() {
+            if (email == "o@o.com" && password == "123") {
+                signIn();
+                navigation.navigate('Auth');
+            }
         }
+        return <Button title="Sign IN" onPress={navigateHome} />;
     };
 
     return (
@@ -70,16 +63,12 @@ const Login = (props) => {
             />
 
             <TouchableOpacity style={styles.submitButton}>
-                <Button title="Sign In" style={styles.submitButtonText} onPress={() => SignIn({ ...props })} />
+                <SignIn {...props} />
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.submitButton}>
-                <Button title="Create Account" onPress={() => CreateAccount({ ...props })} style={styles.submitButtonText} />
+                <CreateAccount {...props} />
             </TouchableOpacity>
-
-            <View style={styles.actions}>
-
-            </View>
         </View>
     );
 };

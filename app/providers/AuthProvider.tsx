@@ -12,6 +12,7 @@ const AuthContext = React.createContext({
     signIn: () => { },
     signOut: () => { },
 });
+
 export const useAuthorization = () => {
     const context = React.useContext(AuthContext);
     if (!context) {
@@ -19,6 +20,7 @@ export const useAuthorization = () => {
     }
     return context;
 };
+
 export const AuthProvider = props => {
     const [state, dispatch] = React.useReducer(reducer, {
         status: 'idle',

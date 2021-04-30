@@ -21,7 +21,7 @@ export const useAuthorization = () => {
     return context;
 };
 
-export const AuthProvider = props => {
+export const AuthProvider = (props: { children: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }) => {
     const [state, dispatch] = React.useReducer(reducer, {
         status: 'idle',
         authToken: null,
@@ -43,7 +43,7 @@ export const AuthProvider = props => {
     }, [state, dispatch]);
     const actions = React.useMemo(
         () => ({
-            signIn: async token => {
+            signIn: async (token: any) => {
                 dispatch({ type: 'SIGN_IN', token });
                 await setToken(token);
             },
@@ -60,7 +60,7 @@ export const AuthProvider = props => {
         </AuthContext.Provider>
     );
 };
-const reducer = (state, action) => {
+const reducer = (state: any, action: { type: string; token: any; }) => {
     switch (action.type) {
         case 'SIGN_OUT':
             return {

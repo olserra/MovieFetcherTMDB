@@ -8,7 +8,7 @@ import { Share } from '../../components/common/Share';
 import { TouchableOpacity } from '../../components/common/TouchableOpacity';
 import { darkBlue } from '../../utils/colors';
 import styles from './styles';
-import { useAuthorization } from '../../providers/AuthProvider';
+import { useAuthorization } from '../../stores/AuthStore';
 
 const Configuration = (props) => {
 
@@ -17,7 +17,8 @@ const Configuration = (props) => {
   const SignOut = ({ navigation }) => {
     const { signOut } = useAuthorization();
     function navigateAuth() {
-      signOut();
+      console.log("Test")
+      signOut("my_token");
       navigation.navigate('Login');
     }
     return <Button title="Sign Out" onPress={navigateAuth} />;
@@ -83,7 +84,7 @@ const Configuration = (props) => {
               <Text style={styles.itemTextVersion} numberOfLines={2}>
                 Version 1.0
               </Text>
-              <TouchableOpacity onPress={() => signOut()}>
+              <TouchableOpacity>
                 <View style={styles.actions}>
                   <SignOut {...props} />
                 </View>

@@ -42,7 +42,6 @@ const TabsConfig = {
 };
 
 const AppNavigator = () => (
-
   <Host>
     <Tab.Navigator initialRouteName={ROUTES.MOVIE_LIST} {...TabsConfig}>
       <Tab.Screen

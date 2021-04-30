@@ -1,19 +1,21 @@
-import genre from '../data/genres.json';
+import { useGenreStore } from '../stores/GenreStore';
 
-export const convertTypeWithGenre = (arr, type, isSearch) => {
+export const convertTypeWithGenre = (arr: string | any[], type: string, isSearch: any) => {
+  const { genres } = useGenreStore();
+
   if (type === 'normal' || isSearch) {
-    if (arr.length > 1) return `${genre[arr[0]].name}, ${genre[arr[1]].name}`;
-    return arr.length !== 0 ? `${genre[arr[0]].name}` : '';
+    if (arr.length > 1) return `${genres[arr[0]].name}, ${genres[arr[1]].name}`;
+    return arr.length !== 0 ? `${genres[arr[0]].name}` : '';
   }
 
-  return arr.length !== 0 && type !== genre[arr[0]].name
-    ? `${type}, ${genre[arr[0]].name}`
+  return arr.length !== 0 && type !== genres[arr[0]].name
+    ? `${type}, ${genres[arr[0]].name}`
     : type;
 };
 
-export const convertToGenres = (genre, messageNotFound = 'Uninformed') =>
-  genre.length > 0
-    ? genre.length > 1
-      ? `${genre[0].name}, ${genre[1].name}`
-      : genre[0].name
+export const convertToGenres = (genres: string | any[], messageNotFound = 'Uninformed') =>
+  genres.length > 0
+    ? genres.length > 1
+      ? `${genres[0].name}, ${genres[1].name}`
+      : genres[0].name
     : messageNotFound;

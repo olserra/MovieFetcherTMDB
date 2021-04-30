@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import { Button, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Button, TextInput, TouchableOpacity, View } from 'react-native';
 
 import Dialog from "react-native-dialog";
 import styles from "./Styles"
-import { useAuthorization } from '../../providers/AuthProvider';
+import { useAuthorization } from '../../stores/AuthStore';
 import { useState } from 'react';
 
 const Login = (props) => {
@@ -21,11 +21,10 @@ const Login = (props) => {
         setVisible(false);
     };
 
-
     const CreateAccount = ({ navigation }) => {
         const { signIn } = useAuthorization();
         function navigateHome() {
-            signIn();
+            signIn("my_token");
             navigation.navigate('Auth');
         }
         return <Button title="Create Account" onPress={navigateHome} />;
@@ -58,6 +57,7 @@ const Login = (props) => {
     };
 
     return (
+
         <View style={styles.container}>
             <TextInput
                 style={styles.input}

@@ -41,7 +41,7 @@ To get a local copy up and running follow these simple example steps.
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
+4. Enter your API in `.env`
    ```JS
    const API_KEY = 'ENTER YOUR API';
    ```

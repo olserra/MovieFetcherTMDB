@@ -43,7 +43,7 @@ To get a local copy up and running follow these simple example steps.
    ```
 4. Enter your API in `.env`
    ```JS
-   const API_KEY = 'ENTER YOUR API';
+   API_KEY = 'ENTER YOUR API';
    ```
 
 <!-- NEXT STEPS -->

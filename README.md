@@ -1,5 +1,3 @@
-![Cine: The Movie Guide](./resources/demo.png)
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 

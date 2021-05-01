@@ -1,3 +1,5 @@
+![Your best cinema guide](./../app/assets/images/screens.png)
+
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 

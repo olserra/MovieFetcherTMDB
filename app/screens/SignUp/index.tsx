@@ -10,7 +10,8 @@ const Login = (props) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [visible, setVisible] = useState(false);
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
 
     useEffect(() => {
         BackHandler.addEventListener('hardwareBackPress', () => true)
@@ -18,23 +19,10 @@ const Login = (props) => {
             BackHandler.removeEventListener('hardwareBackPress', () => true)
     }, [])
 
-    const CreateAccount = ({ navigation }) => {
+    const SignUp = ({ navigation }) => {
         const { signIn } = useAuthorization();
         function navigateHome() {
-            navigation.replace('SignUp');
-        }
-        return <Text onPress={navigateHome}>Create account</Text>;
-    };
-
-    const SignIn = ({ navigation }) => {
-        const { signIn } = useAuthorization();
-        function navigateHome() {
-            if (email.email === "o@o.com" && password.password === "123") {
-                signIn("my_token");
-                navigation.replace('Auth');
-                emailInput.clear()
-                passInput.clear()
-            } else {
+            if (email.email == "" && password.password == "" && firstName.firstName == "" && lastName.lastName == "") {
                 Alert.alert(
                     "Error",
                     "Password or email invalid",
@@ -42,9 +30,12 @@ const Login = (props) => {
                         { text: "OK", onPress: () => console.log("OK Pressed") }
                     ]
                 );
+            } else {
+                signIn("my_token");
+                navigation.replace('Auth');
             }
         }
-        return <Button title="Sign in" onPress={navigateHome} />;
+        return <Button title="Sign up" onPress={navigateHome} />;
     };
 
     return (
@@ -54,6 +45,24 @@ const Login = (props) => {
             <Image
                 style={styles.tinyLogo}
                 source={require('../../assets/images/tmdb.png')}
+            />
+            <TextInput
+                ref={input => { firstNameInput = input }}
+                style={styles.input}
+                onChangeText={(firstName) => setFirstName({ firstName })}
+                placeholder="First name"
+                autoCapitalize="none"
+                autoCorrect={false}
+                keyboardType="default"
+            />
+            <TextInput
+                ref={input => { lastNameInput = input }}
+                style={styles.input}
+                onChangeText={(lastName) => setLastName({ lastName })}
+                placeholder="LastName"
+                autoCapitalize="none"
+                autoCorrect={false}
+                keyboardType="default"
             />
             <TextInput
                 ref={input => { emailInput = input }}
@@ -76,11 +85,7 @@ const Login = (props) => {
             />
 
             <TouchableOpacity style={styles.submitButton}>
-                <SignIn {...props} />
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.createAccountLink}>
-                <CreateAccount {...props} />
+                <SignUp {...props} />
             </TouchableOpacity>
         </View>
     );

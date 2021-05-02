@@ -15,7 +15,6 @@ Screens:
 
 The app was developed using React Native cli (bare) with Typescript as the main language. A part of that, here is a list with some of the technologies, libraries or features I am using:
 
-* [DetoX]
 * [MobX]
 * [Navigation 5.x]
 * [Jest]
@@ -49,13 +48,11 @@ To get a local copy up and running follow these simple example steps.
 <!-- NEXT STEPS -->
 ## Nice to have in a near future
 
-### Known issues limitation (high level)
-* Architecture (DDD)
-* Improve tests (DetoX with Jest)
+### Known issues limitation
+* DetoX
+* .env
 * App size
-
-### Tests to implement
-* (scenario) What happens if the server is down? 
+* (test scenario) What happens if the server is down? 
 * Memory issues? Do we have cache? 
 * Error handling?
 * Bad connection

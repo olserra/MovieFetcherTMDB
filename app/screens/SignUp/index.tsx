@@ -1,3 +1,4 @@
+import * as EmailValidator from 'email-validator';
 import * as React from 'react';
 
 import { Alert, BackHandler, Button, Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
@@ -29,7 +30,7 @@ const Login = (props) => {
     const SignUp = ({ navigation }) => {
         const { signIn } = useAuthorization();
         function navigateHome() {
-            if (email.email == "" && password.password == "" && firstName.firstName == "" && lastName.lastName == "") {
+            if (EmailValidator.validate(email.email) == false || email.email == "" || password.password == "" || firstName.firstName == "" || lastName.lastName == "") {
                 Alert.alert(
                     "Error",
                     "Password or email invalid",

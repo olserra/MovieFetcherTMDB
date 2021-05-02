@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 
 import styles from "./styles"
 import { useAuthorization } from '../../stores/AuthStore';
+import { useUserStore } from '../../stores/UserStore';
 
 const Login = (props) => {
 
@@ -39,6 +40,13 @@ const Login = (props) => {
                     ]
                 );
             } else {
+                let user = {
+                    "firstname": firstName.firstName,
+                    "lastName": lastName.lastName,
+                    "email": email.email,
+                    "password": password.password
+                }
+                // useUserStore.addUser(user);
                 signIn("my_token");
                 navigation.replace('Auth');
             }

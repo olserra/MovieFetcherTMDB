@@ -1,3 +1,4 @@
+import * as EmailValidator from 'email-validator';
 import * as React from 'react';
 
 import { Alert, BackHandler, Button, Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
@@ -5,12 +6,13 @@ import { useEffect, useState } from 'react';
 
 import styles from "./styles"
 import { useAuthorization } from '../../stores/AuthStore';
+import { useUserStore } from '../../stores/UserStore';
 
 const Login = (props) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [visible, setVisible] = useState(false);
+    const { users } = useUserStore();
 
     useEffect(() => {
         BackHandler.addEventListener('hardwareBackPress', () => true)
@@ -28,11 +30,13 @@ const Login = (props) => {
     const SignIn = ({ navigation }) => {
         const { signIn } = useAuthorization();
         function navigateHome() {
-            if (email.email === "o@o.com" && password.password === "123") {
+            if (users.find(el => el.email === email.email && el.password === password.password) && EmailValidator.validate(email.email) == true) {
                 signIn("my_token");
                 navigation.replace('Auth');
                 emailInput.clear()
                 passInput.clear()
+                setEmail("")
+                setPassword("")
             } else {
                 Alert.alert(
                     "Error",
@@ -42,6 +46,7 @@ const Login = (props) => {
                     ]
                 );
             }
+
         }
         return <Button title="Sign in" onPress={navigateHome} />;
     };

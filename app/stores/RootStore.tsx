@@ -1,21 +1,26 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { Instance, SnapshotOut, types } from "mobx-state-tree"
+import AuthStore from './AuthStore';
+import SettingsStore from './SettingsStore.js';
+import UserStore from './UserStore.js';
+import { create } from 'mobx-persist';
 
-import { AuthStoreModel } from "../stores/AuthStore copy"
-/**
- * A RootStore model.
- */
-// prettier-ignore
-export const RootStoreModel = types.model("RootStore").props({
-    authStore: types.optional(AuthStoreModel, {}),
-})
-    .actions(self => ({}))
-/**
- * The RootStore instance.
- */
-export interface RootStore extends Instance<typeof RootStoreModel> { }
-/**
- * The data of a RootStore.
- */
-export interface RootStoreSnapshot extends SnapshotOut<typeof RootStoreModel> { }
+const hydrate = create({
+    storage: AsyncStorage,
+    jsonify: true,
+});
+
+class RootStore {
+    AuthStore = AuthStore;
+    UserStore = UserStore;
+    SettingsStore = SettingsStore;
+
+    constructor() {
+        Promise.all([
+            hydrate('auth', this.AuthStore),
+            hydrate('user', this.UserStore),
+            hydrate('settings', this.SettingsStore).then(() => this.SettingsStore.initData()),
+        ])
+            .then(() => finishedLoading());
+    }
+};
+
+export default new RootStore();

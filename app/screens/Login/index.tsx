@@ -19,7 +19,6 @@ const Login = (props) => {
     }, [])
 
     const CreateAccount = ({ navigation }) => {
-        const { signIn } = useAuthorization();
         function navigateHome() {
             navigation.replace('SignUp');
         }

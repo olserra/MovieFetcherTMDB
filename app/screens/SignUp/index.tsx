@@ -19,6 +19,13 @@ const Login = (props) => {
             BackHandler.removeEventListener('hardwareBackPress', () => true)
     }, [])
 
+    const SignIn = ({ navigation }) => {
+        function navigateHome() {
+            navigation.replace('Login');
+        }
+        return <Text onPress={navigateHome}>Log in</Text>;
+    };
+
     const SignUp = ({ navigation }) => {
         const { signIn } = useAuthorization();
         function navigateHome() {
@@ -86,6 +93,9 @@ const Login = (props) => {
 
             <TouchableOpacity style={styles.submitButton}>
                 <SignUp {...props} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.signInLink}>
+                <SignIn {...props} />
             </TouchableOpacity>
         </View>
     );

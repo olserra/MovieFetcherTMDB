@@ -45,7 +45,12 @@ const styles = StyleSheet.create({
         marginBottom: 45,
         width: 86,
         height: 78,
-    }
+    },
+    signInLink: {
+        justifyContent: "center",
+        alignItems: "center",
+        paddingTop: 15,
+    },
 });
 
 export default styles;

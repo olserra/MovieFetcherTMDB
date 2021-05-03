@@ -39,11 +39,7 @@ To get a local copy up and running follow these simple example steps.
    ```
 3. Install NPM packages
    ```sh
-   npm install
-   ```
-4. Enter your API in `.env`
-   ```JS
-   API_KEY = 'ENTER YOUR API';
+   yarn
    ```
 
 <!-- NEXT STEPS -->

@@ -49,16 +49,13 @@ To get a local copy up and running follow these simple example steps.
 ## Final considerations
 
 ### Known issues limitation
-* DetoX
+* DetoX / Unit tests
 * .env
 * App size
 * (test scenario) What happens if the server is down? 
 * Memory issues? Do we have cache? 
 * Error handling?
-* Bad connection
-* Old devices
-* Smaller resolutions
-* Unit tests
+* Old devices and smaller resolutions
 
 ### Features to implement
 * Monitoring system (Firebase for trackability and have a crashrate)

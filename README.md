@@ -46,7 +46,7 @@ To get a local copy up and running follow these simple example steps.
    ```
 
 <!-- NEXT STEPS -->
-## Nice to have in a near future
+## Final considerations
 
 ### Known issues limitation
 * DetoX

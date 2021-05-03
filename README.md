@@ -16,6 +16,7 @@ Screens:
 The app was developed using React Native cli (bare) with Typescript as the main language. A part of that, here is a list with some of the technologies, libraries or features I am using:
 
 * [MobX]
+* [DetoX]
 * [Navigation 5.x]
 * [Jest]
 * [Eslint]
@@ -48,7 +49,7 @@ To get a local copy up and running follow these simple example steps.
 ### Known issues limitation
 * Android simulator doesn't work
 * npm not working well (probably because the expo eject)
-* DetoX
+* DetoX (using Jest - to be improved)
 * App size
 * (test scenario) What happens if the server is down? 
 * Memory issues? Do we have cache? 

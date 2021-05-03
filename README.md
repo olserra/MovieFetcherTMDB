@@ -49,8 +49,8 @@ To get a local copy up and running follow these simple example steps.
 ## Final considerations
 
 ### Known issues limitation
-* DetoX / Unit tests
-* .env
+* Android simulator doesn't work
+* Couldn't install DetoX, dotenv and other dependecies using npm (probably because the expo eject)
 * App size
 * (test scenario) What happens if the server is down? 
 * Memory issues? Do we have cache? 

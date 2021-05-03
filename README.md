@@ -3,7 +3,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-The MovieFetcherTMDB is a React Native app that relies on TMDB API, that shows the most mopular movies, with the cover, actors, producers, year, title, trailer, language and genre, and also the rating.
+The MovieFetcherTMDB is a React Native app that relies on TMDB API and is based on an existing GitHub project(link bellow on 'buid with' session), that shows the most mopular movies, with the cover, actors, producers, year, title, trailer, language and genre, and also the rating.
 
 Screens:
 * The home brings us a list that can be filtered by date (releases or old), popularity (most or less) and revenue (higher). On the home screen you can also arrange the films in a single column or on 2 columns.
@@ -22,6 +22,7 @@ The app was developed using React Native cli (bare) with Typescript as the main 
 * [Async Storage]
 * [Typescript]
 * [Expo components]
+* GitHub: Cine Movie Guide (https://github.com/murillo94/cine-the-guide-movie)
 
 <!-- GETTING STARTED -->
 ## Getting Started
